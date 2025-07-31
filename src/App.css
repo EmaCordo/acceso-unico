@@ -1,38 +1,94 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500&display=swap");
+
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #e0eaff, #f7faff);
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+}
+
+.glass-wrapper {
+  backdrop-filter: blur(40px);
+  background: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  border-radius: 28px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.glass-card h2 {
+  text-align: center;
+  font-weight: 600;
+  color: #111;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 14px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.35);
+  font-size: 16px;
+  transition: all 0.2s ease;
+  color: #000;
+  outline: none;
+}
+
+input:focus {
+  border-color: rgba(0, 122, 255, 0.6);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+button {
+  padding: 14px;
+  border: none;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #007aff, #0a84ff);
   color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background: linear-gradient(135deg, #005ce6, #007aff);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.forgot-link {
+  text-align: center;
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #007aff;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
 }
