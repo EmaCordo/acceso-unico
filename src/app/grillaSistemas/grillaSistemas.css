@@ -1,0 +1,120 @@
+.gs-wrap {
+  background: #fff;
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+.gs-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.gs-input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+}
+.gs-right label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.gs-table-wrap {
+  overflow: auto;
+}
+.gs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.gs-table thead th {
+  position: sticky;
+  top: 0;
+  background: #f7f7f9;
+  text-align: left;
+  padding: 10px;
+  font-weight: 700;
+  border-bottom: 1px solid #e6e6e6;
+  cursor: pointer;
+  user-select: none;
+}
+.gs-table thead th.sorted {
+  color: #0a7543;
+}
+.gs-table thead th .sort {
+  margin-left: 6px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+.gs-table tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.gs-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+.clip {
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.center {
+  text-align: center;
+  color: #666;
+}
+.error {
+  color: #a61d24;
+  font-weight: 600;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.badge.success {
+  background: #e6fffb;
+  color: #08979c;
+  border: 1px solid #87e8de;
+}
+.badge.danger {
+  background: #fff1f0;
+  color: #cf1322;
+  border: 1px solid #ffa39e;
+}
+.badge.neutral {
+  background: #f4f4f5;
+  color: #3f3f46;
+  border: 1px solid #e4e4e7;
+}
+
+.gs-pager {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 10px;
+}
+.gs-pager button {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  cursor: pointer;
+}
+.gs-pager button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,14 +1,43 @@
-// src/components/Login.jsx
+// src/Login/login.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';   // <--- import
 import './login.css';
 
 function Login() {
-    const [usuario, setUsuario] = useState('');
-    const [contrasena, setContrasena] = useState('');
+    const [nickname, setNickname] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [err, setErr] = useState('');
+    const navigate = useNavigate();                 // <--- hook
 
-    const handleSubmit = (e) => {
+    const API_BASE =
+        (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_BASE) ||
+        process.env.REACT_APP_API_BASE ||
+        'http://127.0.0.1:8080';
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert(`Bienvenido, ${usuario}`);
+        setErr('');
+        setLoading(true);
+        try {
+            const res = await fetch(`${API_BASE}/login.php`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nickname, password }),
+            });
+            const data = await res.json();
+            if (!res.ok || !data.success) throw new Error(data.message || 'Credenciales inválidas');
+
+            // Opcional: guardar datos de sesión
+            // localStorage.setItem('user', JSON.stringify(data.user));
+
+            // Redirigir al dashboard (podés pasar datos por state si querés)
+            navigate('/dashboard', { replace: true, state: { user: data.user } });
+        } catch (e) {
+            setErr(e.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -16,25 +45,27 @@ function Login() {
             <div className="login-container">
                 <div className="glass-card">
                     <h2>Iniciar sesión</h2>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} noValidate>
                         <input
                             type="text"
-                            placeholder="Usuario o email"
-                            value={usuario}
-                            onChange={(e) => setUsuario(e.target.value)}
+                            placeholder="Usuario"
+                            value={nickname}
+                            onChange={(e) => setNickname(e.target.value)}
                             required
+                            autoComplete="username"
                         />
                         <input
                             type="password"
                             placeholder="Contraseña"
-                            value={contrasena}
-                            onChange={(e) => setContrasena(e.target.value)}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             required
+                            autoComplete="current-password"
                         />
-                        <button type="submit">Entrar</button>
-                        <a href="#" className="forgot-link">¿Olvidaste tu contraseña?</a>
-                        <a href="#" className="forgot-link">Registrarse</a>
-                        <a href="#" className="forgot-link">¿Olvidó los datos de su correo institucional?</a>
+                        {err && <div className="alert alert-danger">{err}</div>}
+                        <button type="submit" disabled={loading}>
+                            {loading ? 'Ingresando...' : 'Entrar'}
+                        </button>
                     </form>
                 </div>
                 <div className="image-side">
